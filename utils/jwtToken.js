@@ -3,10 +3,10 @@ export const generateToken = (user, message, statusCode, res) => {
   res
     .status(statusCode)
     .cookie("token", token, {
-      expires: new Date(
-        Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-      ),
+      maxAge: 1000 * 60 * 60 * 24 * 15, // 15 days in milliseconds
       httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // Ensure the cookie is sent over HTTPS in production
+      sameSite: "Strict", // Helps prevent CSRF attacks
     })
     .json({
       success: true,
