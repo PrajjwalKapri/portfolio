@@ -41,6 +41,10 @@ app.use("/api/v1/skill", skillRouter);
 app.use("/api/v1/softwareapplication", softwareApplicationRouter);
 app.use("/api/v1/project", projectRouter);
 
+app.get("/ping", (req, res) => {
+  res.status(200).send("Pinging...");
+});
+
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to My portfolio backend");
 });
